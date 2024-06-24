@@ -1,0 +1,23 @@
+<div class="filter-container">
+    <div *ngIf="selectedFilter" class="selected-filter">
+      <span>Task Type: {{ selectedFilter }}</span>
+      <button (click)="clearFilter()">×</button>
+    </div>
+    <div class="filter-dropdown">
+      <button (click)="toggleDropdown()" class="dropdown-toggle">Task Type</button>
+      <div *ngIf="dropdownOpen" class="dropdown-menu">
+        <label>
+          <input type="checkbox" (change)="selectFilter('Meeting')" [checked]="selectedFilter === 'Meeting'" />
+          <span class="filter-icon">📍</span> Meeting
+        </label>
+        <label>
+          <input type="checkbox" (change)="selectFilter('Call')" [checked]="selectedFilter === 'Call'" />
+          <span class="filter-icon">📞</span> Call
+        </label>
+        <label>
+          <input type="checkbox" (change)="selectFilter('Video Call')" [checked]="selectedFilter === 'Video Call'" />
+          <span class="filter-icon">📹</span> Video Call
+        </label>
+      </div>
+    </div>
+  </div>

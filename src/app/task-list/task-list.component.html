@@ -1,0 +1,59 @@
+<header>
+  <div class="header-left">
+    <!-- <img src="logo.png" alt="Private Circle Logo" class="logo"> -->
+    <select>
+      <option>Companies</option>
+    </select>
+  </div>
+  <nav>
+    <ul>
+      <li>DASHBOARD</li>
+      <li>COMPANIES</li>
+      <li>FUNDS</li>
+      <li>HNIs</li>
+      <li>MESSAGING</li>
+      <li>MEETINGS</li>
+      <li>NOTES</li>
+      <li>DOCUMENTS</li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <div class="user-info">
+      <span>Firstname Lastname</span>
+      <span>Company Name Private Limited</span>
+    </div>
+    <div class="notifications">
+      <span class="notification-icon"></span>
+      <span class="notification-icon"></span>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="sales-log">
+    <div class="log-header">
+      <h3>SALES LOG</h3>
+      <button class="new-task" (click)="openModal()"><img src="plus.png" alt="" class="icon"> New Task</button>
+      <app-task-form
+        [isVisible]="isModalVisible"
+        (closed)="onModalClosed()"
+      ></app-task-form>
+      <input type="text" placeholder="Search" />
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date <img src="filter.png" alt="" class="filter" /></th>
+          <th>Entity Name <img src="filter.png" alt="" class="filter" /></th>
+          <th>Task Type <img src="filter.png" alt="" class="filter" /></th>
+          <th>Time <img src="filter.png" alt="" class="filter" /></th>
+          <th>Contact Person <img src="filter.png" alt="" class="filter" /></th>
+          <th>Notes <img src="filter.png" alt="" class="filter" /></th>
+          <th>Status <img src="filter.png" alt="" class="filter" /></th>
+        </tr>
+      </thead>
+      <tbody id="sales-log-entries">
+        <!-- JavaScript will populate this section -->
+      </tbody>
+    </table>
+  </section>
+</main>
