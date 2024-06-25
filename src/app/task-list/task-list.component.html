@@ -32,10 +32,12 @@
   <section class="sales-log">
     <div class="log-header">
       <h3>SALES LOG</h3>
-      <button class="new-task" (click)="openModal()"><img src="plus.png" alt="" class="icon"> New Task</button>
+      <button class="new-task" (click)="openModal()">
+        <img src="plus.png" alt="" class="icon" /> New Task
+      </button>
       <app-task-form
         [isVisible]="isModalVisible"
-        (closed)="onModalClosed()"
+        (closed)="onModalClosed($event)"
       ></app-task-form>
       <input type="text" placeholder="Search" />
     </div>
@@ -52,7 +54,15 @@
         </tr>
       </thead>
       <tbody id="sales-log-entries">
-        <!-- JavaScript will populate this section -->
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.time }}</td>
+          <td>{{ task.entityName }}</td>
+          <td>{{ task.taskType }}</td>
+          <td>{{ task.time }}</td>
+          <td>{{ task.contactPerson }}</td>
+          <td>{{ task.notes }}</td>
+          <td>{{ task.status }}</td>
+        </tr>
       </tbody>
     </table>
   </section>
