@@ -23,7 +23,6 @@ export class TaskFormComponent implements OnInit {
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
-    console.log('logging in ngOnInit of task form', this.isVisible);
     setTimeout(() => {
       this.timeForm?.reset();
     });
@@ -31,7 +30,6 @@ export class TaskFormComponent implements OnInit {
 
   @ViewChild('taskForm') timeForm: NgForm | undefined;
 
-  @Input() isVisible: boolean = false;
   @Output() closed = new EventEmitter();
 
   hours: number[] = Array.from({ length: 12 }, (_, i) => i);
@@ -39,7 +37,6 @@ export class TaskFormComponent implements OnInit {
   isAM: boolean = true;
 
   closeModal() {
-    this.isVisible = false;
     this.closed.emit();
   }
 
@@ -56,23 +53,37 @@ export class TaskFormComponent implements OnInit {
     contactPerson: '',
     notes: '',
     status: 'open',
+    formattedTime: '',
   };
-
-  createTask() {
-    this.taskService.createTask(this.task).subscribe((newTask) => {
-      console.log('Task created:', newTask);
-    });
-  }
 
   onSubmit(form: any) {
     console.log('task name', this.task.entityName);
     console.log('task date', this.task.date);
     console.log('AM/PM', this.isAM);
+    this.formatTime();
     this.closed.emit(this.task);
   }
 
   onCancel() {
-    this.isVisible = false;
     this.closed.emit();
+  }
+
+  formatTime() {
+    var hour = '';
+    var minute = '';
+
+    if (this.task.time.hour < 10) {
+      hour = '0' + this.task.time.hour.toString();
+    } else {
+      hour = this.task.time.hour.toString();
+    }
+    if (this.task.time.minute < 10) {
+      minute = '0' + this.task.time.minute.toString();
+    } else {
+      minute = this.task.time.minute.toString();
+    }
+
+    this.task.formattedTime =
+      hour + ':' + minute + ' ' + (this.task.time.isAM ? 'AM' : 'PM');
   }
 }

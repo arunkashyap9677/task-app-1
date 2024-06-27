@@ -7,6 +7,7 @@ export interface Task {
   contactPerson: string;
   notes: string;
   status: string;
+  formattedTime: string;
 }
 
 export interface Time {
